@@ -1,0 +1,9 @@
+# 0006 — Evaluation isolation, native packaging, and honest replay
+
+Evaluation runs create separate in-memory databases, copy only pinned source versions, load explicit case records, substitute all agents with deterministic fixtures, and replace controlled external destinations with isolated internal record actions. The runner receives a fixture-only provider map and never receives environment providers. Reports retain exact original version references, case snapshots, agent definitions, substitutions, and assertion outcomes. Deliberate mapping and instruction-text regressions are tested. Structural fixture results are reported separately from unmeasured real-model quality.
+
+Native packaging serves the built web application through Fastify on loopback and launches a separate worker process. One launcher stops both on termination or sibling exit. Container and public deployment are deliberately deferred until a concrete operational need exists.
+
+Backups use node:sqlite's online backup API and publish a new private file exclusively after integrity/migration validation. Sessions and worker leases are removed from the copy. Restore accepts only a new/empty directory. The acceptance test invokes real backup/restore CLI subprocesses against a live WAL database; this also avoids a native async SQLite backup hang observed inside the Vitest worker environment. Standalone CLI execution passed.
+
+A separate recorder opens temporary fictional data only and explicitly uses FixtureProvider. It records success after database reopening during review, rejection of missing-price input, and malformed output. A static HTML/JSON replay displays these checkpoints without calling the operational API. It is labeled recorded fixture execution throughout; no live inference, video recording, or independent second-developer trial is claimed.

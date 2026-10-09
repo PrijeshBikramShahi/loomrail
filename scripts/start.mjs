@@ -1,0 +1,13 @@
+import { spawn } from 'node:child_process';
+import { existsSync } from 'node:fs';
+import process from 'node:process';
+import { fileURLToPath, URL } from 'node:url';
+const cwd=fileURLToPath(new URL('../',import.meta.url));
+if(!existsSync(new URL('../apps/server/dist/index.js',import.meta.url))||!existsSync(new URL('../apps/web/dist/index.html',import.meta.url)))throw new Error('Build the application first: npm run build');
+const port=process.env.LOOMRAIL_PORT??'3001';
+const env={...process.env,LOOMRAIL_SERVE_WEB:'true',LOOMRAIL_ORIGIN:process.env.LOOMRAIL_ORIGIN??`http://127.0.0.1:${port}`};
+const children=['apps/server/dist/index.js','apps/server/dist/worker.js'].map(file=>spawn(process.execPath,[file],{cwd,env,stdio:'inherit'}));
+let stopping=false;
+const stop=()=>{if(stopping)return;stopping=true;for(const child of children)child.kill('SIGTERM');};
+for(const signal of ['SIGINT','SIGTERM'])process.once(signal,stop);
+for(const child of children)child.once('exit',code=>{if(!stopping){process.exitCode=code||0;stop();}});

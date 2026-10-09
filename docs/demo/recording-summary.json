@@ -1,0 +1,36 @@
+{
+  "recordedAt": "2026-10-08T04:34:27.396Z",
+  "disclaimer": "Recorded deterministic fixture execution with fictional data. No live model inference, external actions, or operator data. The replay is read-only.",
+  "scenarios": [
+    {
+      "name": "Approve after reopening database",
+      "frames": 9,
+      "outcome": "succeeded"
+    },
+    {
+      "name": "Reject missing-price draft",
+      "frames": 9,
+      "outcome": "failed"
+    },
+    {
+      "name": "Malformed model response",
+      "frames": 3,
+      "outcome": "failed"
+    },
+    {
+      "name": "Provider unavailable",
+      "frames": 3,
+      "outcome": "failed"
+    },
+    {
+      "name": "Unauthorized tool request",
+      "frames": 3,
+      "outcome": "failed"
+    },
+    {
+      "name": "Conflicting guidelines (simulated fixture)",
+      "frames": 9,
+      "outcome": "failed"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@loomrail/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "worker": "node --import tsx src/worker.ts",
+    "operator:init": "node --import tsx src/operator-init.ts",
+    "db:migrate": "node --import tsx src/db/migrate.ts"
+  },
+  "dependencies": {
+    "@fastify/static": "10.1.5",
+    "@loomrail/contracts": "0.0.0",
+    "@loomrail/engine": "0.0.0",
+    "@loomrail/providers": "0.0.0",
+    "csv-parse": "7.0.3",
+    "fastify": "5.12.5"
+  }
+}
