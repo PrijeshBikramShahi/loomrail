@@ -9,7 +9,7 @@ Design a workflow visually, pin an agent to versioned knowledge, inspect every p
 - **Local and private.** Your data lives in an embedded SQLite database on your machine. No hosted service or account is required.
 - **Bring your own model.** Run deterministic fixtures offline, local models through Ollama, or remote models through OpenAI or OpenRouter free models.
 
-## Current release
+## Product boundaries
 
 Loomrail is an early release built for a single operator running it locally.
 
